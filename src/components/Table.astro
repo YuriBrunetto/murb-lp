@@ -1,0 +1,39 @@
+---
+import {
+  Table as TableUI,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
+import { Separator } from "../components/ui/separator.tsx";
+---
+
+<TableUI>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Plano</TableHead>
+      <TableHead className="w-[100px]">Invoice</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Método de pagamento</TableHead>
+      <TableHead className="text-right">Valor</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">VIP Mensal</TableCell>
+      <TableCell>INV001</TableCell>
+      <TableCell>Pago</TableCell>
+      <TableCell>Cartão de crédito</TableCell>
+      <TableCell className="text-right font-medium">R$7,29 / mês</TableCell>
+    </TableRow>
+  </TableBody>
+</TableUI>
+
+<Separator className="my-4" />
+
+<div class="flex items-center justify-between">
+  <p class="font-medium">Valor total</p>
+  <span class="font-bold text-xl text-[#FFB500]">R$7,29</span>
+</div>

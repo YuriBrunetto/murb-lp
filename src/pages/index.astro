@@ -1,25 +1,54 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+import "../styles/global.css";
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+// Component Imports
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Table from "../components/Table.astro";
+import PaymentOptions from "../components/PaymentOptions.astro";
+import { PaymentForm } from "../components/PaymentForm.tsx";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Murb LP</title>
+  </head>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
+  <body>
+    <Header />
+
+    <main class="max-w-2xl mx-auto mt-2 py-2">
+      <section class="border border-solid rounded-lg p-4 shadow-md">
+        <p class="text-lg font-bold">Resumo do pedido</p>
+        <p class="text-zinc-500">Revise os detalhes do seu pedido abaixo</p>
+        <Table />
+      </section>
+
+      <section class="border border-solid rounded-lg p-4 shadow-md mt-8">
+        <p class="text-lg font-bold">Formas de pagamento</p>
+        <p class="text-zinc-500">
+          Escolha a forma de pagamento mais conveniente:
+        </p>
+
+        <PaymentOptions />
+      </section>
+
+      <!-- se o método de pagamento for cartão -->
+      <section class="border border-solid rounded-lg p-4 shadow-md mt-8">
+        <p class="text-lg font-bold">Pagamento seguro</p>
+        <p class="text-zinc-500">
+          Preencha seus dados de pagamento abaixo. Todas as transações são
+          seguras e criptografadas.
+        </p>
+
+        <PaymentForm client:load />
+      </section>
+    </main>
+
+    <Footer />
+  </body>
 </html>

@@ -1,0 +1,37 @@
+---
+// src/components/PaymentOptions.astro
+import { Card } from "../components/ui/card";
+---
+
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4"
+  id="payment-options"
+>
+  <Card
+    data-method="credit"
+    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
+  >
+    Cartão de Crédito
+  </Card>
+
+  <Card
+    data-method="debit"
+    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
+  >
+    Cartão de Débito
+  </Card>
+
+  <Card
+    data-method="pix"
+    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
+  >
+    PIX
+  </Card>
+
+  <Card
+    data-method="boleto"
+    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
+  >
+    Boleto Bancário
+  </Card>
+</div>
