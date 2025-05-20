@@ -1,0 +1,37 @@
+<span id="countdown" class="font-bold">15:00</span>
+
+<script>
+  const countdownDisplay = document.getElementById("countdown");
+
+  let totalSeconds = 15 * 60;
+  let timer: NodeJS.Timeout;
+  let isRunning = false;
+
+  function updateDisplay() {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    if (countdownDisplay) {
+      countdownDisplay.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    }
+  }
+
+  function startCountdown() {
+    if (isRunning || totalSeconds <= 0) return;
+
+    isRunning = true;
+
+    timer = setInterval(function () {
+      totalSeconds--;
+      updateDisplay();
+
+      if (totalSeconds <= 0) {
+        clearInterval(timer);
+        isRunning = false;
+      }
+    }, 1000);
+  }
+
+  updateDisplay();
+  startCountdown();
+</script>

@@ -1,4 +1,5 @@
 ---
+import Countdown from "../components/Countdown.astro";
 import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 
@@ -34,7 +35,7 @@ const paymentMethods = [
   </div>
   <div class="flex justify-between pb-1 mt-1">
     Pagar em até
-    <span class="font-bold">14:59</span>
+    <Countdown />
   </div>
 
   <div class="flex items-center flex-col mt-4">
