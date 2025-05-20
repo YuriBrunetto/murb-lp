@@ -1,37 +1,71 @@
 ---
-// src/components/PaymentOptions.astro
 import { Card } from "../components/ui/card";
+import { Button } from "../components/ui/button";
+
+const paymentMethods = [
+  {
+    method: "credit",
+    label: "Cartão de crédito",
+  },
+  {
+    method: "pix",
+    label: "PIX",
+  },
+];
 ---
 
-<div
-  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4"
-  id="payment-options"
->
-  <Card
-    data-method="credit"
-    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
-  >
-    Cartão de Crédito
-  </Card>
-
-  <Card
-    data-method="debit"
-    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
-  >
-    Cartão de Débito
-  </Card>
-
-  <Card
-    data-method="pix"
-    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
-  >
-    PIX
-  </Card>
-
-  <Card
-    data-method="boleto"
-    className="payment-card cursor-pointer transition border p-4 rounded text-center hover:ring-2 hover:ring-primary"
-  >
-    Boleto Bancário
-  </Card>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+  {
+    paymentMethods.map(({ method, label }) => (
+      <Card
+        data-method={method}
+        className="payment-card cursor-pointer transition uppercase border p-4 rounded text-center font-bold text-[14px] hover:ring-2 hover:ring-primary"
+      >
+        {label}
+      </Card>
+    ))
+  }
 </div>
+
+<div id="pix-details" class="mt-4 pb-4 hidden">
+  <div class="flex justify-between pb-1 border-b border-solid">
+    Pagamento total
+    <span class="font-bold">R$24,90</span>
+  </div>
+  <div class="flex justify-between pb-1 mt-1">
+    Pagar em até
+    <span class="font-bold">14:59</span>
+  </div>
+
+  <div class="flex items-center flex-col mt-4">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+      alt="QR Code"
+    />
+    <Button
+      type="button"
+      className="cursor-pointer font-bold uppercase text-[12px]"
+      >Copiar código PIX</Button
+    >
+  </div>
+
+  <p class="mt-4 font-medium">Por favor, siga as instruções:</p>
+  <ul class="list-decimal px-8 text-zinc-600 text-sm/7">
+    <li>Acesse o app do seu banco ou internet banking de preferência</li>
+    <li>Escolha pagar via PIX</li>
+    <li>Escaneie o QR Code ou copie e cole o código PIX acima</li>
+    <li>Seu pagamento será aprovado em alguns segundos</li>
+  </ul>
+</div>
+
+<script>
+  const paymentButton = document.querySelectorAll(".payment-card");
+  const pixDetails = document.getElementById("pix-details");
+
+  paymentButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      const method = button.getAttribute("data-method");
+      pixDetails?.classList.toggle("hidden", method !== "pix");
+    });
+  });
+</script>
