@@ -29,16 +29,12 @@ const paymentMethods = [
 </div>
 
 <div id="pix-details" class="mt-4 pb-4 hidden">
-  <div class="flex justify-between pb-1 border-b border-solid">
+  <div class="flex justify-between border-b pb-1 border-solid">
     Pagamento total
     <span class="font-bold">R$24,90</span>
   </div>
-  <div class="flex justify-between pb-1 mt-1">
-    Pagar em até
-    <Countdown />
-  </div>
 
-  <div class="flex items-center flex-col mt-4">
+  <div class="flex items-center flex-col mt-2">
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
       alt="QR Code"
@@ -48,6 +44,11 @@ const paymentMethods = [
       className="cursor-pointer font-bold uppercase text-[12px]"
       >Copiar código PIX</Button
     >
+  </div>
+
+  <div class="flex justify-center mt-2">
+    Pagar em até{" "}
+    <Countdown />
   </div>
 
   <p class="mt-4 font-medium">Por favor, siga as instruções:</p>
